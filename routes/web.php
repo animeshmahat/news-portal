@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BaseController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/app', function () {
-    return view('admin/layouts/app');
-});
+// Route::get('/app', function () {
+//     return view('admin.layouts.app');
+// });
 
-Route::get('', function () {
-    return view('site/layouts/app');
+Route::get("/admin",                        [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/category',                 [App\Http\Controllers\Admin\CategoryController::class, 'category'])->name('category');
+    Route::get('/create_category',          [App\Http\Controllers\Admin\CategoryController::class, 'create_category'])->name('create_category');
+    Route::get('/news',                     [App\Http\Controllers\Admin\NewsController::class, 'news'])->name('news');
+    Route::get('/create_news',              [App\Http\Controllers\Admin\NewsController::class, 'create_news'])->name('create_news');
 });
