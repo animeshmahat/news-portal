@@ -46,9 +46,8 @@
                             <input type="checkbox" id="status" name="status" value="1" {{ $data-> status ? 'checked' : '' }}>
                         </div>
                     </div>
-                    <a href="{{ route('category.index') }}" class="btn btn-sm btn-danger mb-4"><i class="fa fa-ban" aria-hidden="true"></i> CANCEL</a>
-                    <button type="reset" class="btn btn-sm btn-secondary mb-4"><i class="fa fa-refresh" aria-hidden="true"></i> RESET</button>
-                    <button type="submit" class="btn btn-sm btn-success mb-4"><i class="fa fa-paper-plane" aria-hidden="true"></i> UPDATE</button>
+                    <a href="{{ route('category.index') }}" class="btn btn-sm btn-success mb-4"><i class="fa fa-ban" aria-hidden="true"></i> CANCEL</a>
+                    <button type="submit" class="btn btn-sm btn-warning mb-4"><i class="fa fa-paper-plane" aria-hidden="true"></i> UPDATE</button>
                 </form>
             </div>
         </div>

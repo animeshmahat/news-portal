@@ -11,10 +11,12 @@
         <div class="col-12 mt-4">
             <h2>Category View</h2>
             <div class="container mt-4 p-2" style="border: 1px solid #c1c1c1;">
-                <p><strong>Title :</strong><br>{{$data->title}}</p>
+                <p><strong>Title :</strong></p>
+                <div class="d-inline-flex">{{$data->title}}</div>
                 <hr>
-                <p><strong>Description :</strong><br>{!! html_entity_decode($data->description) !!}
+                <p><strong>Description :</strong>
                 </p>
+                <div class="d-inline-flex">{!! html_entity_decode($data->description) !!}</div>
                 <hr>
                 <p><strong>Status :</strong>
                     @if($data->status == 1)

@@ -8,9 +8,9 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h2 class="mt-4">Tables</h2>
+    <h2 class="mt-4">Category Tables</h2>
     <ol class="breadcrumb mb-3">
-        <li class="breadcrumb-item active">Category Tables</li>
+        <li class="breadcrumb-item active">Title | Description | Status</li>
     </ol>
     <a href="{{ route('category.create') }}" class="btn btn-sm btn-success mb-2"><i class="fa-solid fa-plus"></i> Add Category </a>
     @if(session('success'))
@@ -69,9 +69,11 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('category.view', ['id' => $row->id]) }}" class="btn btn-primary btn-sm m-1"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View</a>
-                            <a href="{{ route('category.edit', ['id' => $row->id]) }}" class="btn btn-warning btn-sm m-1"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
-                            <a href="{{ route('category.delete', ['id' => $row->id]) }}" class="btn btn-danger btn-sm m-1" onclick="return confirm('Permanently delete this record?')"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('category.view', ['id' => $row->id]) }}" class="btn btn-primary btn-sm m-1"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View</a>
+                                <a href="{{ route('category.edit', ['id' => $row->id]) }}" class="btn btn-warning btn-sm m-1"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                                <a href="{{ route('category.delete', ['id' => $row->id]) }}" class="btn btn-danger btn-sm m-1" onclick="return confirm('Permanently delete this record?')"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
