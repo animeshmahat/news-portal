@@ -9,17 +9,17 @@
 <div class="container">
     <div class="row">
         <div class="col-12 mt-4">
-            <h2>Category View</h2>
+            <h2>{{$_panel}} View</h2>
             <div class="container mt-4 p-2" style="border: 1px solid #c1c1c1;">
                 <p><strong>Title :</strong></p>
-                <div class="d-inline-flex">{{$data->title}}</div>
+                <div class="d-inline-flex">{{$data['row']->title}}</div>
                 <hr>
                 <p><strong>Description :</strong>
                 </p>
-                <div class="d-inline-flex">{!! html_entity_decode($data->description) !!}</div>
+                <div class="d-inline-flex">{!! html_entity_decode($data['row']->description) !!}</div>
                 <hr>
                 <p><strong>Status :</strong>
-                    @if($data->status == 1)
+                    @if($data['row']->status == 1)
                     <span class="badge bg-success">ACTIVE</span>
                     @else
                     <span class="badge bg-danger">INACTIVE</span>

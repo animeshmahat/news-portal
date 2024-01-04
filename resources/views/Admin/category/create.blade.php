@@ -2,7 +2,6 @@
 
 @section('title', 'Create Category')
 
-
 @section('css')
 <style>
     .validate {
@@ -20,7 +19,7 @@
 <div class="container p-4">
     <div class="row">
         <div class="col-12">
-            <h2>Add Category</h2>
+            <h2>Add {{$_panel}}</h2>
             <div class="container mt-4" style="border: 1px solid #c1c1c1;">
                 <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf

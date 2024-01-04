@@ -8,11 +8,11 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h2 class="mt-4">Category Tables</h2>
+    <h2 class="mt-4">{{$_panel}} Tables</h2>
     <ol class="breadcrumb mb-3">
         <li class="breadcrumb-item active">Title | Description | Status</li>
     </ol>
-    <a href="{{ route('category.create') }}" class="btn btn-sm btn-success mb-2"><i class="fa-solid fa-plus"></i> Add Category </a>
+    <a href="{{ route('category.create') }}" class="btn btn-sm btn-success mb-2"><i class="fa-solid fa-plus"></i> Add {{$_panel}} </a>
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -34,7 +34,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Categories
+            {{$_panel}}
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
@@ -57,7 +57,8 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($data as $key=>$row)
+                    @if(isset($data['row']))
+                    @foreach ($data['row'] as $key=>$row)
                     <tr>
                         <td>{{ $key+1 }}.</td>
                         <td>{{ $row->title }}</td>
@@ -77,6 +78,9 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else
+                    <p>Data Not Found !</p>
+                    @endif
                 </tbody>
             </table>
         </div>

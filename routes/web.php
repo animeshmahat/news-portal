@@ -23,13 +23,23 @@ Route::get("/admin",                        [App\Http\Controllers\Admin\Dashboar
 
 Route::group(['prefix' => 'category',       'as' => 'category.'], function () {
     Route::get('/',                         [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('index');
-    Route::get('/create',                   [App\Http\Controllers\Admin\CategoryController::class, 'create_category'])->name('create');
+    Route::get('/create',                   [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('create');
     Route::post('/',                        [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('store');
-    Route::get('/edit/{id}',                [App\Http\Controllers\Admin\CategoryController::class, 'edit_category'])->name('edit');
-    Route::post('/update/{id}',             [App\Http\Controllers\Admin\CategoryController::class, 'update_category'])->name('update');
-    Route::get('/view/{id}',                [App\Http\Controllers\Admin\CategoryController::class, 'view_category'])->name('view');
-    Route::get('/delete/{id}',              [App\Http\Controllers\Admin\CategoryController::class, 'delete_category'])->name('delete');
+    Route::get('/edit/{id}',                [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}',             [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('update');
+    Route::get('/view/{id}',                [App\Http\Controllers\Admin\CategoryController::class, 'view'])->name('view');
+    Route::get('/delete/{id}',              [App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('delete');
 
     Route::get('/news',                     [App\Http\Controllers\Admin\NewsController::class, 'news'])->name('news');
     Route::get('/create_news',              [App\Http\Controllers\Admin\NewsController::class, 'create_news'])->name('create_news');
+});
+
+Route::group(['prefix' => 'users',          'as' => 'users.'], function () {
+    Route::get('/',                         [App\Http\Controllers\Admin\UserController::class, 'index'])->name('index');
+    Route::get('/create',                   [App\Http\Controllers\Admin\UserController::class, 'create'])->name('create');
+});
+
+Route::group(['prefix' => 'post',           'as' => 'post.'], function () {
+    Route::get('/',                         [App\Http\Controllers\Admin\PostController::class, 'index'])->name('index');
+    Route::get('/create',                   [App\Http\Controllers\Admin\PostController::class, 'create'])->name('create');
 });

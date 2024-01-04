@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
+    protected $base_route = 'category.index';
+    protected $view_path = 'admin.category';
+    protected $panel = 'Category';
     protected $model;
 
     public function __construct()
@@ -18,13 +21,13 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $data = DB::table('categories')->get();
-        return view('admin.category.index', compact('data'));
+        $data['row'] = DB::table('categories')->get();
+        return view(parent::loadDefaultDataToView($this->view_path . '.index'), compact('data'));
     }
 
-    public function create_category()
+    public function create()
     {
-        return view('admin.category.create');
+        return view(parent::loadDefaultDataToView($this->view_path . '.create'));
     }
 
     public function store(Request $request)
@@ -42,20 +45,23 @@ class CategoryController extends Controller
 
         $success                 = $model->save();
 
+
         if ($success) {
-            return redirect()->route('category.index')->with('success', 'New information added successfully.');
+            $request->session()->flash('success', $this->panel . ' successfully added.');
+            return redirect()->route($this->base_route);
         } else {
-            return view('category.index');
+            return redirect()->route($this->base_route);
         }
     }
 
-    public function edit_category($id)
+    public function edit($id)
     {
-        $data = $this->model->findorFail($id);
-        return view('admin.category.edit', compact('data'));
+        $data = [];
+        $data['row'] = $this->model->findorFail($id);
+        return view(parent::loadDefaultDataToView($this->view_path . '.edit'), compact('data'));
     }
 
-    public function update_category(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validator = $this->model->getRules($request->all());
 
@@ -72,26 +78,28 @@ class CategoryController extends Controller
         $success = $data->save();
 
         if ($success) {
-            return redirect()->route('category.index')->with('update_success', 'Information updated successfully');
+            $request->session()->flash('update_success', $this->panel . ' successfully updated.');
+            return redirect()->route($this->base_route);
         } else {
-            return view('category.index');
+            return redirect()->route($this->base_route);
         }
     }
 
-    public function view_category(Request $request, $id)
+    public function view(Request $request, $id)
     {
-        $data = $this->model::findorFail($id);
-        return view('admin.category.view', compact('data'));
+        $data = [];
+        $data['row'] = $this->model::findorFail($id);
+        return view(parent::loadDefaultDataToView($this->view_path . '.view'), compact('data'));
     }
 
-    public function delete_category(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         $model = $this->model;
         $data = $model::findorFail($id);
         $success = $data->delete();
 
         if ($success) {
-            return redirect()->route('category.index')->with('delete_success', 'Information deleted successfully.');
+            return redirect()->route($this->base_route)->with('delete_success', $this->panel . ' successfully deleted.');
         }
     }
 }
