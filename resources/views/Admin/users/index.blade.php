@@ -13,6 +13,7 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Image</th>
@@ -23,6 +24,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->unsignedInteger('user_id');
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
             $table->string('unique_id');
             $table->string('title');
             $table->string('slug')->unique;
@@ -26,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->boolean('featured');
             $table->string('url');
             $table->unsignedInteger('visitor');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,7 +16,6 @@
     </style>
     <link href="{{ asset('assets/admin/css/styles.css') }}" rel="stylesheet" />
     @yield('css')
-
 </head>
 
 <body class="sb-nav-fixed">

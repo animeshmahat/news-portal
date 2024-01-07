@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\DashboardController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/app', function () {
-//     return view('admin.layouts.app');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get("/admin",                        [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
+Route::get("/admin",                        [App\Http\Controllers\Admin\DashboardController::class, 'index'])->middleware(['auth'])->name('admin');
 
-Route::group(['prefix' => 'category',       'as' => 'category.'], function () {
+Route::group(['prefix' => 'category',       'as' => 'category.', 'middleware' => ['auth']], function () {
     Route::get('/',                         [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('index');
     Route::get('/create',                   [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('create');
     Route::post('/',                        [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('store');
@@ -34,12 +35,21 @@ Route::group(['prefix' => 'category',       'as' => 'category.'], function () {
     Route::get('/create_news',              [App\Http\Controllers\Admin\NewsController::class, 'create_news'])->name('create_news');
 });
 
-Route::group(['prefix' => 'users',          'as' => 'users.'], function () {
+Route::group(['prefix' => 'users',          'as' => 'users.', 'middleware' => ['auth']], function () {
     Route::get('/',                         [App\Http\Controllers\Admin\UserController::class, 'index'])->name('index');
     Route::get('/create',                   [App\Http\Controllers\Admin\UserController::class, 'create'])->name('create');
 });
 
-Route::group(['prefix' => 'post',           'as' => 'post.'], function () {
+Route::group(['prefix' => 'post',           'as' => 'post.', 'middleware' => ['auth']], function () {
     Route::get('/',                         [App\Http\Controllers\Admin\PostController::class, 'index'])->name('index');
     Route::get('/create',                   [App\Http\Controllers\Admin\PostController::class, 'create'])->name('create');
 });
+
+Auth::routes();
+
+Route::get('/home',                         [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/register',                     [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register',                    [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
+Route::post('/logout',                      [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

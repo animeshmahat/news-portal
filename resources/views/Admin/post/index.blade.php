@@ -23,6 +23,7 @@
                             <th>Status</th>
                             <th>Featured</th>
                             <th>Visitor</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,13 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                    <a href="#" class="btn btn-primary btn-sm m-1"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View</a>
+                                    <a href="#" class="btn btn-warning btn-sm m-1"><i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit</a>
+                                    <a href="#" class="btn btn-danger btn-sm m-1" onclick="return confirm('Permanently delete this record?')"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
