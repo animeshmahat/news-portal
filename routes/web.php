@@ -20,6 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home',                         [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/register',                     [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register',                    [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
+Route::post('/logout',                      [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
 Route::get("/admin",                        [App\Http\Controllers\Admin\DashboardController::class, 'index'])->middleware(['auth'])->name('admin');
 
 Route::group(['prefix' => 'category',       'as' => 'category.', 'middleware' => ['auth']], function () {
@@ -37,19 +46,14 @@ Route::group(['prefix' => 'category',       'as' => 'category.', 'middleware' =>
 
 Route::group(['prefix' => 'users',          'as' => 'users.', 'middleware' => ['auth']], function () {
     Route::get('/',                         [App\Http\Controllers\Admin\UserController::class, 'index'])->name('index');
-    Route::get('/create',                   [App\Http\Controllers\Admin\UserController::class, 'create'])->name('create');
 });
 
 Route::group(['prefix' => 'post',           'as' => 'post.', 'middleware' => ['auth']], function () {
     Route::get('/',                         [App\Http\Controllers\Admin\PostController::class, 'index'])->name('index');
     Route::get('/create',                   [App\Http\Controllers\Admin\PostController::class, 'create'])->name('create');
+    Route::post('/',                        [App\Http\Controllers\Admin\PostController::class, 'store'])->name('store');
+    Route::get('/edit/{id}',                [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}',              [App\Http\Controllers\Admin\PostController::class, 'update'])->name('update');
+    Route::get('/view/{id}',                [App\Http\Controllers\Admin\PostController::class, 'view'])->name('view');
+    Route::get('/delete/{id}',              [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('delete');
 });
-
-Auth::routes();
-
-Route::get('/home',                         [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/register',                     [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register',                    [App\Http\Controllers\Auth\RegisterController::class, 'register']);
-
-Route::post('/logout',                      [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

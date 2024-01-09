@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <a href="{{ route('category.index') }}" class="btn btn-sm btn-success mb-4"><i class="fa fa-ban" aria-hidden="true"></i> CANCEL</a>
-                    <button type="submit" class="btn btn-sm btn-warning mb-4"><i class="fa fa-paper-plane" aria-hidden="true"></i> UPDATE</button>
+                    <button type="submit" class="btn btn-sm btn-warning mb-4"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i> UPDATE</button>
                 </form>
             </div>
         </div>

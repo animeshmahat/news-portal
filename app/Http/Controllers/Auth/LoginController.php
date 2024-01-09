@@ -46,6 +46,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect('/login')->with('success', 'You Logged Out');
+        return redirect('/login')->with('success', 'You Logged Out!!!!!');
     }
 }

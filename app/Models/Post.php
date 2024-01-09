@@ -10,13 +10,13 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type',
+        'category_id',
         'user_id',
         'unique_id',
         'title',
         'slug',
         'thumbnail',
-        'context',
+        'content',
         'status',
         'featured',
         'url',
@@ -26,7 +26,13 @@ class Post extends Model
     public function getRules(array $validate)
     {
         return validator($validate, [
-            'title' => 'required | string'
+            'category_id' => 'required',
+            'title' => 'required | string | min:2 | max:25',
+            'content' => 'required | string ',
+            'status' => 'nullable | boolean',
+            'featured' => 'nullable | boolean',
+            'url' => 'string',
+            'thumbnail' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'
         ]);
     }
 }

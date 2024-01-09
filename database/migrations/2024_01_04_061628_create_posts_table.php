@@ -15,18 +15,19 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('unique_id');
             $table->string('title');
-            $table->string('slug')->unique;
+            $table->string('slug')->unique();
             $table->string('thumbnail')->nullable();
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->boolean('status')->default(1);
-            $table->boolean('featured');
-            $table->string('url');
+            $table->boolean('featured')->default(0);
+            $table->string('url')->nullable();
             $table->unsignedInteger('visitor');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

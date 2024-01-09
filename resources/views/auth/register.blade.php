@@ -78,7 +78,7 @@
                             <label for="mobile" class="col-md-4 col-form-label text-md-end">{{ __('Mobile') }}</label>
 
                             <div class="col-md-6">
-                                <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}">
+                                <input id="mobile" type="tel" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}">
 
                                 @error('mobile')
                                 <span class="invalid-feedback" role="alert">

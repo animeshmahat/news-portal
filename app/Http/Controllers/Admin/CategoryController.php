@@ -92,7 +92,7 @@ class CategoryController extends BaseController
         return view(parent::loadDefaultDataToView($this->view_path . '.view'), compact('data'));
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $model = $this->model;
         $data = $model::findorFail($id);

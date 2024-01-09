@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $createMutipleUsers = [
-            ['name' => 'admin', 'email' => 'admin@admin.com', 'password' => bcrypt('admin'), 'mobile' => '1234567890', 'username' => 'admin123'],
+            ['name' => 'admin', 'email' => 'admin@admin.com', 'password' => bcrypt('password'), 'mobile' => '1234567890', 'username' => 'admin'],
             ['name' => 'root', 'email' => 'root@root.com', 'password' => bcrypt('root'), 'mobile' => '6383273344', 'username' => 'root123'],
             ['name' => 'user', 'email' => 'user@user.com', 'password' => bcrypt('user'), 'mobile' => '3323432423', 'username' => 'user123'],
             ['name' => 'ram', 'email' => 'ram@ram.com', 'password' => bcrypt('ram'), 'mobile' => '3343434343', 'username' => 'ram123'],

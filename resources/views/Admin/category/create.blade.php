@@ -25,7 +25,7 @@
                     @csrf
                     <div class="mb-4 mt-2">
                         <label for="title" class="form-label"><strong>Category Title :</strong></label>
-                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter New Category Title" value="{{ old('title') }}">
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter New Category Title" value="{{ old('title') }}" autofocus>
                         @error('title')
                         <p class="validate m-1">{{ $message }}</p>
                         @enderror

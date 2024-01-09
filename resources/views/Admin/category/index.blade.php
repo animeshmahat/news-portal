@@ -63,10 +63,11 @@
                         <td>{{ $key+1 }}.</td>
                         <td>{{ $row->title }}</td>
                         <td>{!! html_entity_decode($row->description) !!}</td>
-                        <td> @if ( $row-> status == "1" )
-                            <span class="badge bg-success">ACTIVE</span>
+                        <td>
+                            @if ( $row-> status == "1" )
+                            <span class="badge rounded-pill bg-success">ACTIVE</span>
                             @elseif ( $row -> status == "0" )
-                            <span class="badge bg-danger">INACTIVE</span>
+                            <span class="badge rounded-pill bg-danger">INACTIVE</span>
                             @endif
                         </td>
                         <td>

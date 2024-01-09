@@ -10,7 +10,9 @@
     <div class="row">
         <div class="col-12 mt-4">
             <h2>{{$_panel}} View</h2>
-            <div class="container mt-4 p-2" style="border: 1px solid #c1c1c1;">
+
+            <div class="container mt-4 p-3" style="border: 1px solid #c1c1c1;">
+
                 <p><strong>Title :</strong></p>
                 <div class="d-inline-flex">{{$data['row']->title}}</div>
                 <hr>
@@ -20,13 +22,21 @@
                 <hr>
                 <p><strong>Status :</strong>
                     @if($data['row']->status == 1)
-                    <span class="badge bg-success">ACTIVE</span>
+                    <button type="button" class="btn btn-sm btn-outline-success position-relative">
+                        ACTIVE
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-success rounded-circle"> </span>
+                    </button>
                     @else
-                    <span class="badge bg-danger">INACTIVE</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger position-relative" disabled>
+                        INACTIVE
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-danger rounded-circle"> </span>
+                    </button>
                     @endif
                 </p>
+
             </div>
-            <a href="{{route('category.index')}}" class="btn btn-sm btn-outline-primary mt-4"><i class="fa-solid fa-arrow-left"></i> RETURN</a>
+
+            <a href="{{route('category.index')}}" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-backward"></i> RETURN</a>
         </div>
     </div>
 </div>
