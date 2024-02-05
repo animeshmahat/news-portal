@@ -1,0 +1,9 @@
+let overlayDiv=document.createElement('div');overlayDiv.className='backdrop__overlay';if(overlayDiv){overlayDiv.addEventListener('click',()=>{searchOverlay.classList.remove('searchActive');sidebarNav.classList.remove('active');overlayDiv.remove();})}
+let searchToggler=document.querySelector('.search__toggler');let searchOverlay=document.querySelector('.search__overlay');let searchOverlayClose=document.querySelector('.search__overlay-close');if(searchOverlay&&searchToggler){searchToggler.addEventListener('click',(e)=>{e.preventDefault();searchOverlay.classList.add('searchActive');document.querySelector('body').append(overlayDiv);})
+searchOverlayClose.addEventListener('click',()=>{searchOverlay.classList.remove('searchActive');overlayDiv.remove();})}
+let menuToggler=document.querySelector('.menu__toggler');let sidebarNav=document.querySelector('.sidebar__nav');let sidebarNavClose=document.querySelector('.close__drawer');if(sidebarNav&&menuToggler){menuToggler.addEventListener('click',(e)=>{e.preventDefault();sidebarNav.classList.add('active');document.querySelector('body').append(overlayDiv);})
+sidebarNavClose.addEventListener('click',()=>{sidebarNav.classList.remove('active');overlayDiv.remove();})}
+let stickyNav=document.querySelector(".ict__header-bottom");let headerElem=document.querySelector('.ict__header');let headerHeight=$('.ict__header').height();let stickyHeight=stickyNav.clientHeight;console.log(headerHeight)
+window.onscroll=()=>{if(this.scrollY>headerHeight){headerElem.classList.add("stickyHeader");}else{headerElem.classList.remove("stickyHeader");}};let sidebarContent=document.querySelector('.sidebar__content');let shareWidget=document.querySelector('.share__widget');if(sidebarContent){$(sidebarContent).css('top',stickyHeight+30)}
+if(shareWidget){$(shareWidget).css('top',stickyHeight+30)}
+$('.has-dropdown .nav__link').click(function(e){e.preventDefault();$(this).parent('.has-dropdown').toggleClass('active');})
