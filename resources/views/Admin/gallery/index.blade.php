@@ -80,7 +80,7 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $row->name }}</td>
                         <td>
-                            <img src="{{ asset('/uploads/gallery/' . $row->thumbnail) }}" alt="thumbnail" id="thumbnail">
+                            <img src="{{ asset('/uploads/gallery/' . $row->thumbnail) }}" alt="thumbnail" id="thumbnail" onclick="window.open('{{asset('/uploads/gallery/' .$row->thumbnail)}}', '_blank');">
                         </td>
                         <td>
                             @if ( $row-> status == "1" )

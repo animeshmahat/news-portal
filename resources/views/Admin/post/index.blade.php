@@ -5,11 +5,11 @@
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <style>
     #thumbnail {
-        max-width: 90px;
-        max-height: 70px;
+        width: 90px;
+        height: 60px;
+        object-fit: contain;
         border: 1px solid #c1c1c1;
-        padding: 3px;
-        border-radius: 6px;
+        border-radius: 5px;
     }
 </style>
 @endsection

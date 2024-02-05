@@ -58,14 +58,14 @@ Route::group(['prefix' => '/admin',             'as' => 'admin.', 'middleware' =
 
     Route::group(['prefix' => 'post',           'as' => 'post.'], function () {
         Route::get('/',                         [App\Http\Controllers\Admin\PostController::class, 'index'])->name('index');
-        Route::post('/updateStatus/{id}',       [App\Http\Controllers\Admin\PostController::class, 'updateStatus'])->name('updateStatus');
-        Route::post('/updateFeatured/{id}',     [App\Http\Controllers\Admin\PostController::class, 'updateFeatured'])->name('updateFeatured');
         Route::get('/create',                   [App\Http\Controllers\Admin\PostController::class, 'create'])->name('create');
         Route::post('/',                        [App\Http\Controllers\Admin\PostController::class, 'store'])->name('store');
         Route::get('/edit/{id}',                [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('edit');
         Route::put('/update/{id}',              [App\Http\Controllers\Admin\PostController::class, 'update'])->name('update');
         Route::get('/view/{id}',                [App\Http\Controllers\Admin\PostController::class, 'view'])->name('view');
         Route::get('/delete/{id}',              [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('delete');
+        Route::post('/updateStatus/{id}',       [App\Http\Controllers\Admin\PostController::class, 'updateStatus'])->name('updateStatus');
+        Route::post('/updateFeatured/{id}',     [App\Http\Controllers\Admin\PostController::class, 'updateFeatured'])->name('updateFeatured');
     });
 
     Route::group(['prefix' => 'gallery',        'as' => 'gallery.'], function () {
