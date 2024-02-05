@@ -16,7 +16,7 @@
 @section('content')
 <div class="container-fluid px-4">
     <h2 class="mt-4">{{$_panel}} Table</h2>
-    <a href="{{ route('admin.post.create') }}" class="btn btn-sm btn-success mt-2 mb-2"><i class="fa-solid fa-plus"></i> Add Posts </a>
+    <a href="{{ route('admin.post.create') }}" class="btn btn-sm btn-success mt-2 mb-2"><i class="fa-solid fa-plus"></i> Add Posts</a>
     <!-- create, edit and update alerts -->
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
