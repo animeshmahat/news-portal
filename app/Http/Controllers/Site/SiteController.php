@@ -21,16 +21,20 @@ class SiteController extends BaseController
     {
         $post = Post::where('status', 1)->get();
         $featured_post = Post::where('status', 1)->where('featured', 1)->latest()->get()->first();
+        $liked_post = Post::get()->sortBy('visitor')->where('status', 1);
         $gadget = category::where('title', 'Gadget')->first();
         $telecom = category::where('title', 'Telecom')->first();
         if ($gadget) {
-            $gadget_posts = Post::where('category_id', $gadget->id)->where('status', 1)->get();
+            $gadget_posts = Post::where('category_id', $gadget->id)->where('status', 1)->where('featured', 0)->get();
+            $gadget_featured = Post::where('category_id', $gadget->id)->where('featured', 1)->get();
             $telecom_posts = Post::where('category_id', $telecom->id)->where('status', 1)->get();
         }
         $data = [
             'post' => $post,
             'featured_post' => $featured_post,
+            'liked_post' => $liked_post,
             'gadget_posts' => $gadget_posts,
+            'gadget_featured' => $gadget_featured,
             'telecom_posts' => $telecom_posts,
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.index'), compact('data'));
@@ -57,7 +61,7 @@ class SiteController extends BaseController
         $featured_post = Post::where('category_id', $category_id)->where('status', 1)->where('featured', 1)->latest()->get()->first();
         $post = Post::where('category_id', $category_id)->where('status', 1)->where('id', '!=', $featured_post->id)->get();
         $latest = Post::where('status', 1)->latest()->get();
-        $liked = Post::get()->sortByDesc('visitor');
+        $liked = Post::get()->sortBy('visitor')->where('status', 1);
         $data = [
             'category' => $category,
             'featured_post' => $featured_post,

@@ -33,7 +33,7 @@
                             </h3>
 
                             <div class="post__meta">
-                                <p class="meta author">
+                                <p class="meta post__date">
                                     {{$post->user->name}}
                                 </p>
 
@@ -59,7 +59,7 @@
 
                         <div class="card__details">
                             <div class="post__meta">
-                                <p class="meta author">
+                                <p class="meta post__date">
                                     {{$post->user->name}}
                                 </p>
 

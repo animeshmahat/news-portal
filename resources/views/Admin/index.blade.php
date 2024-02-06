@@ -23,26 +23,14 @@
             <div class="card shadow mb-4">
                 <h4 class="p-2 text-light" style="background-color: #353535; border-radius: 5px 5px 0px 0px;">CATEGORY</h4>
                 <h5 class="px-2">Total : {{ $category['row']->count() }}</h5>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @foreach($category['row'] as $category)
-                <p class="px-2 mt-2">
-                    {{ $category->title }}
-                </p>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @endforeach
+
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card shadow mb-4">
                 <h4 class="p-2 text-light" style="background-color: #353535; border-radius: 5px 5px 0px 0px;">POST</h4>
                 <h5 class="px-2">Total : {{ $post['row']->count() }}</h5>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @foreach($post['row'] as $post)
-                <p class="px-2 mt-2">
-                    {{ $post->title}}
-                </p>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @endforeach
+
             </div>
         </div>
 
@@ -50,13 +38,7 @@
             <div class="card shadow mb-4">
                 <h4 class="p-2 text-light" style="background-color: #353535; border-radius: 5px 5px 0px 0px;">GALLERY</h4>
                 <h5 class="px-2">Total : {{ $gallery['row']->count() }}</h5>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @foreach($gallery['row'] as $gallery)
-                <p class="px-2 mt-2">
-                    {{ $gallery->name }}
-                </p>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @endforeach
+
             </div>
         </div>
 
@@ -64,14 +46,27 @@
             <div class="card shadow mb-4">
                 <h4 class="p-2 text-light" style="background-color: #353535; border-radius: 5px 5px 0px 0px;">VIDEO</h4>
                 <h5 class="px-2">Total : {{ $video['row']->count() }}</h5>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @foreach($video['row'] as $video)
-                <p class="px-2 mt-2">
-                    {{ $video->title }}
-                </p>
-                <span style="border-bottom: 1px solid #c1c1c1;"></span>
-                @endforeach
             </div>
+        </div>
+        <div class="col-3 card p-3">
+            <h3>Popular Posts</h3>
+            <hr>
+            @foreach($data['popular'] as $post)
+            @if($loop->index < 4) <p>{{$post->title}}</p>
+                <p>{{$post->visitor}} views</p>
+                <img src="{{asset('/uploads/post/' . $post->thumbnail)}}" alt="" width="200px">
+                <hr>
+                @endif
+                @endforeach
+        </div>
+        <div class="col-3 card p-3">
+            <h3>Popular Categories</h3>
+            <hr>
+            @foreach($data['popular'] as $post)
+            @if($loop->index < 4) <p>{{$post->category->title}}</p>
+                <hr>
+                @endif
+                @endforeach
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 @extends('site.layouts.app')
-@section('title', 'Catgeory')
+@section('title', 'Category')
 @section('css')
 @endsection
 @section('content')
@@ -22,21 +22,21 @@
                 @if(isset($data['featured_post']))
                 <div class="grid__card">
                     <div class="card__img">
-                        <a href="../../news/galaxy-s-24-secc--suiries--suchi/index.html" class="image-size-70">
+                        <a href="{{ route('site.single_post', $data['featured_post']->slug)}}" class="image-size-70">
                             <img src="{{asset('/uploads/post/' . $data['featured_post']->thumbnail)}}" alt="{{$data['featured_post']->title}}">
                         </a>
                     </div>
 
                     <div class="card__details">
                         <h3 class="card__title line-clamp-3">
-                            <a href="../../news/galaxy-s-24-sirj-pre-buuting-with-attractive/index.html">
+                            <a href="{{ route('site.single_post', $data['featured_post']->slug)}}">
                                 {{$data['featured_post']->title}}
                             </a>
                         </h3>
 
                         <div class="post__meta">
                             <p class="meta author">
-                                <a href="../../author/3/index.html">
+                                <a href="{{ route('site.single_post', $data['featured_post']->slug)}}">
                                     {{$data['featured_post']->user->name}}
                                 </a>
                             </p>
@@ -53,6 +53,8 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <p class="alert alert-danger">No posts to show</p>
                 @endif
             </div>
         </div>
@@ -87,14 +89,14 @@
                                 @foreach($data['latest'] as $post)
                                 @if($loop->index < 4) <div class="grid__card">
                                     <div class="card__img">
-                                        <a href="../../news/cyber-security-course-on-pulchowk-campus/index.html">
+                                        <a href="{{ route('site.single_post', $post->slug)}}">
                                             <img src="{{asset('/uploads/post/' . $post->thumbnail)}}">
                                         </a>
                                     </div>
 
                                     <div class="card__details">
                                         <h3 class="card__title line-clamp-2">
-                                            <a href="../../news/cyber-security-course-on-pulchowk-campus/index.html">
+                                            <a href="{{ route('site.single_post', $post->slug)}}">
                                                 {{$post->title}}
                                             </a>
                                         </h3>
@@ -129,14 +131,14 @@
                             @foreach($data['liked'] as $post)
                             @if($loop->index < 4) <div class="grid__card">
                                 <div class="card__img">
-                                    <a href="../../news/14924/index.html" class="image-size-70">
+                                    <a href="{{ route('site.single_post', $post->slug)}}" class="image-size-70">
                                         <img src="{{asset('/uploads/post/' . $post->thumbnail)}}" alt="{{$post->title}}">
                                     </a>
                                 </div>
 
                                 <div class="card__details">
                                     <h3 class="card__title line-clamp-2">
-                                        <a href="../../news/14924/index.html">
+                                        <a href="{{ route('site.single_post', $post->slug)}}">
                                             {{$post->title}}
                                         </a>
                                     </h3>
@@ -175,14 +177,14 @@
                     @foreach($data['post'] as $post)
                     <div class="grid__card">
                         <div class="card__img">
-                            <a href="../../news/sibesu-s-distribution-to-200-families-affected-by/index.html" class="image-size-70">
+                            <a href="{{ route('site.single_post', $post->slug)}}" class="image-size-70">
                                 <img src="{{asset('/uploads/post/' . $post->thumbnail)}}" alt="{{$post->title}}">
                             </a>
                         </div>
 
                         <div class="card__details">
                             <h3 class="card__title line-clamp-2">
-                                <a href="../../news/sibesu-s-distribution-to-200-families-affected-by/index.html">
+                                <a href="{{ route('site.single_post', $post->slug)}}">
                                     {{$post->title}}
                                 </a>
                             </h3>
@@ -202,6 +204,8 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <p class="alert alert-danger">No Posts To Show</p>
                     @endif
                 </div>
             </div>

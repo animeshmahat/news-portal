@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends BaseController
@@ -16,7 +17,7 @@ class DashboardController extends BaseController
         $gallery['row'] = DB::table('galleries')->get();
         $video['row'] = DB::table('videos')->get();
         $data['row'] = DB::table('users')->get();
-
+        $data['popular'] = Post::get()->sortByDesc('visitor');
         return view(parent::loadDefaultDataToView($this->base_route), compact('category', 'post', 'gallery', 'video', 'data'));
     }
 }

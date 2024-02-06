@@ -30,12 +30,12 @@ class Post extends Model
     {
         return validator($validate, [
             'category_id' => 'required',
-            'title' => 'required | string | min:2 | max:50',
+            'title' => 'required | string | min:2 | max:100',
             'content' => 'required | string ',
             'status' => 'nullable | boolean',
             'featured' => 'nullable | boolean',
             'url' => 'string | required',
-            'thumbnail' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'
+            'thumbnail' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4048'
         ]);
     }
     public function getUser()

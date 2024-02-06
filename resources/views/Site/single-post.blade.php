@@ -31,8 +31,8 @@
                                 <!-- ShareThis END -->
                             </div>
                             <!-- viewer  -->
-                            <div class="ms-auto">
-                                <p style="font-family :system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                            <div class="me-auto">
+                                <p style="font-family :'Times New Roman', Times, serif;">
                                     <i class="ph ph-eye"></i> {{$data['post']->visitor}} Views
                                 </p>
                             </div>
@@ -53,9 +53,9 @@
                         <div class="detail__description-content">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="details__content-main">
+                                    <div class="details__content-main" style="margin-right: 10px;">
                                         <div class="details__desc">
-                                            <p style="text-align:justify !important">{!!html_entity_decode($data['post']->content)!!}</p>
+                                            <p style="text-align:justify !important;">{!!html_entity_decode($data['post']->content)!!}</p>
                                         </div>
                                     </div>
                                     <div class="share__widget">

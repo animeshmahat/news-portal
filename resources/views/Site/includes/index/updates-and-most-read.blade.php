@@ -8,7 +8,7 @@
                         <h2 class="category__title">
                             <span>
                                 <b>
-                                    Updates
+                                    Featured Updates
                                 </b>
                             </span>
                         </h2>
@@ -83,7 +83,7 @@
                     <h2 class="category__title">
                         <span>
                             <b>
-                                Liked
+                                Popular
                             </b>
                         </span>
                     </h2>
@@ -95,8 +95,8 @@
                 </div>
             </div>
             <div class="read__grid">
-                @if(isset($data['post']))
-                @foreach($data['post']->reverse() as $post)
+                @if(isset($data['liked_post']))
+                @foreach($data['liked_post']->reverse() as $post)
                 @if($loop->index < 4) <div class="grid__card">
                     <div class="card__img">
                         <a href="{{route('site.single_post', $post->slug)}}">
@@ -110,10 +110,13 @@
                                     {{$post->user->name}}
                                 </a>
                             </p>
-
                             <p class="meta post__date">
                                 {{$post->created_at->format('D-d-M-Y')}}
                             </p>
+                            <!-- <p class="meta post__date">
+                                <i class="ph ph-eye"></i>
+                                {{$post->visitor}} Views
+                            </p> -->
                         </div>
                         <h3 class="card__title line-clamp-2">
                             <a href="{{route('site.single_post', $post->slug)}}">

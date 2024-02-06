@@ -21,13 +21,13 @@
                 @if(isset($all_view['category']))
                 @foreach($all_view['category'] as $category)
                 <li class="has-dropdown">
-                    <a href="#" class="nav__link">
+                    <a href="{{route('site.category_page', $category->title)}}" class="nav__link">
                         <span>
                             {{$category->title}}
-                            <i class="ph ph-caret-right"></i>
+                            <!-- <i class="ph ph-caret-right"></i> -->
                         </span>
                     </a>
-                    <div class="dropdown__menu">
+                    <!-- <div class="dropdown__menu">
                         <ul class="dropdown__menu-list">
                             <li>
                                 <a href="#" class="dropdown__link">
@@ -35,7 +35,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </li>
                 @endforeach
                 @endif
