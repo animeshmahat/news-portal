@@ -30,6 +30,7 @@
                                 <div class="sharethis-inline-share-buttons"></div>
                                 <!-- ShareThis END -->
                             </div>
+                            <!-- viewer  -->
                             <div class="ms-auto">
                                 <p style="font-family :system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
                                     <i class="ph ph-eye"></i> {{$data['post']->visitor}} Views

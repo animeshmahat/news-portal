@@ -7,7 +7,7 @@
                         <h2 class="category__title">
                             <span>
                                 <b>
-                                    ग्याजेट्स
+                                    Gadgets
                                 </b>
                             </span>
                         </h2>
@@ -21,43 +21,46 @@
                 </div>
 
                 <div class="gadgets__grid">
+                    @if(isset($data['gadget_posts']))
                     <div class="grid__left">
+                        @foreach($data['gadget_posts'] as $post)
                         <div class="grid__card">
                             <div class="card__img">
-                                <a href="news/galaxy-s-24-secc--suiries--suchi/index.html" class="image-size-60">
-                                    <img src="../ictsamacharcdn.prixacdn.net/media/thumbnails/albums/s24_in_nepal_KrpLcXxLGJ_AaqtGdWuPK.jpg.360x240_q75_crop-smart_upscale.jpg" alt="नेपालमा सार्वजनिक भयो ग्यालेक्सी एस २४ सिरिज, यस्ता छन् फिचर">
+                                <a href="{{ route('site.single_post', $post->slug)}}" class="image-size-60">
+                                    <img src="{{asset('/uploads/post/' . $post->thumbnail)}}">
                                 </a>
                             </div>
 
                             <div class="card__details">
                                 <h3 class="card__title line-clamp-3">
-                                    <a href="news/galaxy-s-24-secc--suiries--suchi/index.html">
-                                        नेपालमा सार्वजनिक भयो ग्यालेक्सी एस २४ सिरिज, यस्ता छन् फिचर
+                                    <a href="{{ route('site.single_post', $post->slug)}}">
+                                        {{$post->title}}
                                     </a>
                                 </h3>
 
                                 <div class="post__meta">
                                     <p class="meta author">
-                                        <a href="author/3/index.html" tabindex="0">
-                                            आइसिटी समाचार
+                                        <a href="{{ route('site.single_post', $post->slug)}}" tabindex="0">
+                                            {{$post->user->name}}
                                         </a>
                                     </p>
 
                                     <p class="meta post__date">
-                                        आइतबार, १४ माघ, २०८०
+                                        {{$post->created_at->format('D-d-M-Y')}}
                                     </p>
                                 </div>
 
                                 <div class="card__desc line-clamp-3">
                                     <p>
-                                        नेपालमा सामसङको ग्यालेक्सी एस २४ सिरिज सार्वजनिक भएको छ । शुक्रबार एक कार्यक्रमकाबीच सामसङले ग्यालेक्सी एस २४ सिरिज स्मार्टफोन नेपालमा सार्वजनिक गरेको हो ।&nbsp…
+                                        {!!html_entity_decode($post->content, 0, 26,)!!}
                                     </p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
 
-                    <div class="grid__right">
+                    <!-- <div class="grid__right">
                         <div class="grid__card">
                             <div class="card__img">
                                 <a href="news/sibesu-s-distribution-to-200-families-affected-by/index.html" class="image-size-60">
@@ -91,7 +94,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+                    @endif
                 </div>
             </div>
 

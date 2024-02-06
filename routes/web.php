@@ -113,4 +113,5 @@ Route::group(['prefix' => '/admin',             'as' => 'admin.', 'middleware' =
 Route::group(['as' => 'site.',                  'namespace' => 'Site'], function () {
     Route::get('/',                             [App\Http\Controllers\Site\SiteController::class, 'index'])->name('index');
     Route::get('/post/{slug}',                  [App\Http\Controllers\Site\SiteController::class, 'single_post'])->name('single_post');
+    Route::get('/category/{title}',             [App\Http\Controllers\Site\SiteController::class, 'category_page'])->name('category_page');
 });

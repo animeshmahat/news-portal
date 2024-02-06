@@ -5,7 +5,7 @@
                 <h2 class="category__title">
                     <span>
                         <b>
-                            दूरसंचार
+                            Telecom
                         </b>
                     </span>
                 </h2>
@@ -19,68 +19,72 @@
         </div>
 
         <div class="telecom__grid">
+            @if(isset($data['telecom_posts']))
             <div class="row">
                 <div class="col-lg-4">
+                    @foreach($data['telecom_posts'] as $post)
+                    @if($post->featured == "0")
                     <div class="grid__card">
-                        <div class="card__top">
+                        <div class="card__details">
                             <h3 class="card__title">
-                                <a href="news/galaxy-s-24-sirj-pre-buuting-with-attractive/index.html">
-                                    ग्यालेक्सी एस २४ सिरिज प्रि-बुकिङमा आकर्षक उपहारसँगै एनसेलको स्पेशल लक्स नम्बर लिन पाइने
+                                <a href="{{ route('site.single_post', $post->slug)}}">
+                                    {{$post->title}}
                                 </a>
                             </h3>
 
                             <div class="post__meta">
                                 <p class="meta author">
-                                    <a href="author/3/index.html" tabindex="0">
-                                        आइसिटी समाचार
-                                    </a>
+                                    {{$post->user->name}}
                                 </p>
 
                                 <p class="meta post__date">
-                                    बुधबार, १० माघ, २०८०
+                                    {{$post->created_at->format('D-d-M-Y')}}
                                 </p>
                             </div>
                         </div>
-
                     </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="col-lg-8">
+                    @foreach($data['telecom_posts'] as $post)
+                    @if($post->featured == "1")
                     <div class="grid__card">
                         <div class="card__img">
-                            <a href="news/nitv-to-give-digital-marketing-to-nepal/index.html" class="image-size-60">
-                                <img src="../ictsamacharcdn.prixacdn.net/media/thumbnails/albums/ntc_and_nitv_cvl6LlGiu9_e1P77HQgnV.jpg.360x240_q75_crop-smart_upscale.jpg" alt="एनआईटीभीले नेपाल टेलिकमलाई डिजिटल मार्केटिङ सेवा दिने">
+                            <a href="{{ route('site.single_post', $post->slug)}}" class="image-size-60">
+                                <img src="{{asset('/uploads/post/' . $post->thumbnail)}}" alt="{{$post->title}}">
                             </a>
                         </div>
 
                         <div class="card__details">
                             <div class="post__meta">
                                 <p class="meta author">
-                                    <a href="author/3/index.html" tabindex="0">
-                                        आइसिटी समाचार
-                                    </a>
+                                    {{$post->user->name}}
                                 </p>
 
                                 <p class="meta post__date">
-                                    आइतबार, २२ पुष, २०८०
+                                    {{$post->created_at->format('D-d-M-Y')}}
                                 </p>
                             </div>
 
                             <h3 class="card__title">
-                                <a href="news/nitv-to-give-digital-marketing-to-nepal/index.html">
-                                    एनआईटीभीले नेपाल टेलिकमलाई डिजिटल मार्केटिङ सेवा दिने
+                                <a href="{{ route('site.single_post', $post->slug)}}">
+                                    {{$post->title}}
                                 </a>
                             </h3>
 
                             <div class="card__desc line-clamp-3">
                                 <p>
-                                <p style="text-align:justify">नेपाल टेलिकमको बजार व्यवस्थापन कार्यलाई प्रभावकारी बनाउन नेपाल टेलिकम र एनआईटीभी नेपाल लिमिटेड बिच एक सम्झौता सम्पन्न भएको छ ।…
-                                </p>
+                                <p style="text-align:justify">{!!html_entity_decode($post->detail, 0,20)!!}</p>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </section>

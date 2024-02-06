@@ -8,11 +8,11 @@
                 </li>
                 @foreach($all_view['category'] as $category)
                 <li class="nav__list">
-                    <a href="#" class="nav__link">
+                    <a href="{{route('site.category_page', $category->title)}}" class="nav__link">
                         {{$category->title}}
-                        <i class="ph ph-caret-down"></i>
+                        <!-- <i class="ph ph-caret-down"></i> -->
                     </a>
-                    <div class="dropdown__menu">
+                    <!-- <div class="dropdown__menu">
                         <ul class="dropdown__menu-list">
                             <li>
                                 <a href="category/information/index.html" class="dropdown__link">
@@ -20,7 +20,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </li>
                 @endforeach
                 @endif
