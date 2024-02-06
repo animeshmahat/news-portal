@@ -30,14 +30,18 @@
                                 <div class="sharethis-inline-share-buttons"></div>
                                 <!-- ShareThis END -->
                             </div>
+                            <div class="ms-auto">
+                                <p style="font-family :system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                                    <i class="ph ph-eye"></i> {{$data['post']->visitor}} Views
+                                </p>
+                            </div>
                         </div>
+                        <figure>
+                            <img src="{{asset('/uploads/post/' . $data['post']->thumbnail)}}" title="{{$data['post']->title}}">
+                        </figure>
                     </div>
-                    <figure>
-                        <img src="{{asset('/uploads/post/' . $data['post']->thumbnail)}}" title="{{$data['post']->title}}">
-                    </figure>
                 </div>
             </div>
-        </div>
     </section>
     <!-- details description content -->
     <section class="news__section">

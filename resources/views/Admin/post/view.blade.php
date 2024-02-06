@@ -87,7 +87,7 @@
 
                                 <!-- posted at -->
                                 <div class="mb-2">
-                                    <p><strong>POSTED AT:</strong> {{ $data['row']->created_at->format('D-M-d-Y') }}</p>
+                                    <p><strong>POSTED AT:</strong> {{ $data['row']->created_at->format('D-m-d-Y') }}</p>
                                 </div>
 
                                 <!-- Visitors -->

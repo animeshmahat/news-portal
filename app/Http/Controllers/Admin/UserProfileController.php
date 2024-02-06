@@ -34,7 +34,7 @@ class UserProfileController extends BaseController
             'name'                   => 'required|max:40|min:2',
             'image'                  => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048',
             'username'               => ['string', 'required', 'max:255', "unique:users,username,{$id}"],
-            'mobile'                 => ['required', 'max:15', 'min:7', "unique:users,mobile,{$id}"],
+            'mobile'                 => ['required', 'max:20', 'min:7', "unique:users,mobile,{$id}"],
             'status'                 => 'boolean'
         ]);
 
