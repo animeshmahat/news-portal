@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <hr>
-                <!-- @if ($errors->any())
+                @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -44,7 +44,7 @@
                         @endforeach
                     </ul>
                 </div>
-                @endif -->
+                @endif
                 <!-- buttons -->
                 <div class="mt-2">
                     <a href="{{ route('admin.album.index') }}" class="btn btn-sm btn-danger mb-4"><i class="fa fa-ban" aria-hidden="true"></i> CANCEL</a>

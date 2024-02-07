@@ -46,8 +46,8 @@
 
                         <div class="card__desc line-clamp-4">
                             <p>
-                            <p style='\"text-align:justify\"'>
-                                <span style='\"font-size:20px\"'>
+                            <p style="text-align:justify">
+                                <span style="font-size:20px">
                                     {!!html_entity_decode($data['featured_top_viewed']->content)!!}
                                 </span>
                             </p>
@@ -232,7 +232,7 @@
 
                                 <div class="card__desc line-clamp-3">
                                     <p>
-                                        {{{$post->content, 0, 26}}}
+                                        {!!html_entity_decode($post->content)!!}
                                     </p>
                                 </div>
                             </div>

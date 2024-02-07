@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Admin\BaseController;
+use App\Models\Album;
 use App\Models\category;
+use App\Models\Gallery;
 use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class SiteController extends BaseController
@@ -28,6 +31,7 @@ class SiteController extends BaseController
             $gadget_posts = Post::where('category_id', $gadget->id)->where('status', 1)->where('featured', 0)->get();
             $gadget_featured = Post::where('category_id', $gadget->id)->where('featured', 1)->get();
             $telecom_posts = Post::where('category_id', $telecom->id)->where('status', 1)->get();
+            $telecom_featured = Post::where('category_id', $telecom->id)->where('status', 1)->where('featured', 1)->latest()->get()->first();
         }
         $data = [
             'post' => $post,
@@ -115,12 +119,12 @@ class SiteController extends BaseController
     }
     public function most_read(Request $request)
     {
-        $featured_top_viewed = Post::where('status', 1)->where('featured', 1)->orderBy('visitor')->first();
+        $featured_top_viewed = Post::where('status', 1)->where('featured', 1)->orderBy('visitor', 'desc')->first();
         $featured_most_viewed = [];
         if ($featured_top_viewed) {
-            $featured_most_viewed = Post::get()->sortBy('visitor')->where('status', 1)->where('featured', 1)->where('id', '!=', $featured_top_viewed->id);
+            $featured_most_viewed = Post::get()->sortByDesc('visitor')->where('status', 1)->where('featured', 1)->where('id', '!=', $featured_top_viewed->id);
         }
-        $other_most_viewed = Post::get()->sortBy('visitor')->where('status', 1)->where('featured', 0);
+        $other_most_viewed = Post::get()->sortByDesc('visitor')->where('status', 1)->where('featured', 0);
         $post = Post::where('status', 1)->get();
         $data = [
             'featured_top_viewed' => $featured_top_viewed,
@@ -129,5 +133,29 @@ class SiteController extends BaseController
             'post' => $post,
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.most-read'), compact('data'));
+    }
+
+    public function gallery(Request $request)
+    {
+        $data = [];
+        $data['gallery'] = Gallery::where('status', '=', 1)->orderBy('id', 'ASC')->get();
+        return view(parent::loadDefaultDataToView($this->view_path . '.gallery'), compact('data'));
+    }
+
+    public function album(Request $request, $name)
+    {
+        $gallery = Gallery::where('name', $name)->firstOrFail();
+        $gallery_id = $gallery->id;
+
+        if ($gallery_id) {
+            $album = Album::where('gallery_id', $gallery_id)->pluck('images');
+        }
+        // dd($album);
+        $data = [
+            'gallery' => $gallery,
+            'gallery_id' => $gallery_id,
+            'album' => $album,
+        ];
+        return view(parent::loadDefaultDataToView($this->view_path . '.album'), compact('data'));
     }
 }

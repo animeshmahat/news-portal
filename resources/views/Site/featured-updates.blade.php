@@ -46,8 +46,8 @@
 
                     <div class="card__desc line-clamp-4">
                         <p>
-                        <p style='\"text-align:justify\"'>
-                            <span style='\"font-size:20px\"'>
+                        <p style="text-align:justify">
+                            <span style="font-size:20px">
                                 {!!html_entity_decode($data['latest_featured']->content)!!}
                             </span>
                         </p>

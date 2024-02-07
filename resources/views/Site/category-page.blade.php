@@ -46,8 +46,8 @@
 
                     <div class="card__desc line-clamp-4">
                         <p>
-                        <p style='\"text-align:justify\"'>
-                            <span style='\"font-size:20px\"'>
+                        <p style="text-align:justify">
+                            <span style="font-size:20px">
                                 {!!html_entity_decode($data['featured_post']->content)!!}
                             </span>
                         </p>
@@ -55,7 +55,9 @@
                     </div>
                 </div>
                 @else
-                <marquee behavior="" direction="left">No Posts To Show</marquee>
+                <marquee behavior="scroll" direction="left"><span>
+                        <h3>No Posts To Show</h3>
+                    </span></marquee>
                 @endif
             </div>
             @if(isset($data['featured_other']))

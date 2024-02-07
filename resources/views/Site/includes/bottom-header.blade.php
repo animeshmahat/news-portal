@@ -10,19 +10,15 @@
                 <li class="nav__list">
                     <a href="{{route('site.category_page', $category->title)}}" class="nav__link">
                         {{$category->title}}
-                        <!-- <i class="ph ph-caret-down"></i> -->
                     </a>
-                    <!-- <div class="dropdown__menu">
-                        <ul class="dropdown__menu-list">
-                            <li>
-                                <a href="category/information/index.html" class="dropdown__link">
-                                    सूचना
-                                </a>
-                            </li>
-                        </ul>
-                    </div> -->
+
                 </li>
                 @endforeach
+                <div class="nav__list">
+                    <a href="{{route('site.gallery')}}" class="nav__link">
+                        Gallery
+                    </a>
+                </div>
                 @endif
             </ul>
         </nav>

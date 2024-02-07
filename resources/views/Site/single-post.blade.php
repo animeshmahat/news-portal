@@ -32,7 +32,7 @@
                             </div>
                             <!-- viewer  -->
                             <div class="me-auto">
-                                <p style="font-family :'Times New Roman', Times, serif;">
+                                <p style="font-size: small; font-family:'Times New Roman', Times, serif;">
                                     <i class="ph ph-eye"></i> {{$data['post']->visitor}} Views
                                 </p>
                             </div>

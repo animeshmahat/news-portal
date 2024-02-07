@@ -13,7 +13,7 @@
                         </h2>
 
                         <div class="view__all">
-                            <a href="" class="view__all-btn">
+                            <a href="#" class="view__all-btn">
                                 <span class="custom__icon"></span>
                             </a>
                         </div>
