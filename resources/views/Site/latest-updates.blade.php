@@ -1,5 +1,5 @@
 @extends('site.layouts.app')
-@section('title', 'Category')
+@section('title', 'Featured Updates')
 @section('css')
 @endsection
 @section('content')
@@ -10,7 +10,7 @@
                 <h2 class="category__title">
                     <span>
                         <b>
-                            {{$data['category']->title}}
+                            Latest Updates
                         </b>
                     </span>
                 </h2>
@@ -18,29 +18,29 @@
         </div>
 
         <div class="category__grid">
-            @if(isset($data['featured_post']))
+            @if(isset($data['latest_update']))
             <div class="grid__card">
                 <div class="card__img">
-                    <a href="{{route('site.single_post' , $data['featured_post']->slug)}}" class="image-size-70">
-                        <img src="{{asset('/uploads/post/' . $data['featured_post']->thumbnail)}}" alt="इजरायल–हमास युद्धमा यसरी हुँदैछ क्रिप्टोकरेन्सीको प्रयोग">
+                    <a href="{{route('site.single_post' , $data['latest_update']->slug)}}" class="image-size-70">
+                        <img src="{{asset('/uploads/post/' . $data['latest_update']->thumbnail)}}" alt="इजरायल–हमास युद्धमा यसरी हुँदैछ क्रिप्टोकरेन्सीको प्रयोग">
                     </a>
                 </div>
                 <div class="card__details">
                     <h3 class="card__title line-clamp-3">
-                        <a href="{{route('site.single_post' , $data['featured_post']->slug)}}">
-                            {{$data['featured_post']->title}}
+                        <a href="{{route('site.single_post' , $data['latest_update']->slug)}}">
+                            {{$data['latest_update']->title}}
                         </a>
                     </h3>
 
                     <div class="post__meta">
                         <p class="meta author">
-                            <a href="{{route('site.single_post' , $data['featured_post']->slug)}}">
-                                {{$data['featured_post']->user->name}}
+                            <a href="{{route('site.single_post' , $data['latest_update']->slug)}}">
+                                {{$data['latest_update']->user->name}}
                             </a>
                         </p>
 
                         <p class="meta post__date">
-                            {{$data['featured_post']->created_at->format('D-d-M-Y')}}
+                            {{$data['latest_update']->created_at->format('D-d-M-Y')}}
                         </p>
                     </div>
 
@@ -48,7 +48,7 @@
                         <p>
                         <p style='\"text-align:justify\"'>
                             <span style='\"font-size:20px\"'>
-                                {!!html_entity_decode($data['featured_post']->content)!!}
+                                {!!html_entity_decode($data['latest_update']->content)!!}
                             </span>
                         </p>
                         </p>
@@ -58,43 +58,8 @@
                 <marquee behavior="" direction="left">No Posts To Show</marquee>
                 @endif
             </div>
-            @if(isset($data['featured_other']))
-            @foreach($data['featured_other'] as $post)
-            @if($loop->index < 3) <div class="grid__card">
-                <div class="card__img">
-                    <a href="{{route('site.single_post', $post->slug)}}" class="image-size-70">
-                        <img src="{{asset('/uploads/post/' . $post->thumbnail)}}" alt="यातायात कार्यालय एकान्तकुनामा अब लाइसेन्सको राजश्व अनलाईनबाटै तिर्न सकिने">
-                    </a>
-                </div>
-
-                <div class="card__details">
-                    <h3 class="card__title line-clamp-2">
-                        <a href="{{route('site.single_post', $post->slug)}}">
-                            {{$post->title}}
-                        </a>
-                    </h3>
-
-                    <div class="post__meta">
-                        <p class="meta author">
-                            <a href="{{route('site.single_post', $post->slug)}}">
-                                {{$post->user->name}}
-                            </a>
-                        </p>
-
-                        <p class="meta post__date">
-                            {{$post->created_at->format('D-d-M-Y')}}
-                        </p>
-                    </div>
-                </div>
-        </div>
-        @endif
-        @endforeach
-        @else
-        <marquee behavior="" direction="left">No Posts To Show</marquee>
-        @endif
 </section>
 
-<!-- more category object_list.0 -->
 <section class="news__section">
     <div class="custom-container">
         <div class="browse__more">
@@ -112,7 +77,7 @@
                                         </span>
                                     </h2>
                                     <div class="view__all">
-                                        <a href="{{route('site.latest_update')}}" class="view__all-btn">
+                                        <a href="../latest-news/index.html" class="view__all-btn">
                                             <span class="custom__icon"></span>
                                         </a>
                                     </div>
@@ -199,7 +164,7 @@
                         <h2 class="category__title">
                             <span>
                                 <b>
-                                    {{$data['category']->title}}
+                                    Updates
                                 </b>
                             </span>
                         </h2>
@@ -207,8 +172,8 @@
                 </div>
 
                 <div class="profileNews__grid">
-                    @if(isset($data['post']))
-                    @foreach($data['post'] as $post)
+                    @if(isset($data['other_update']))
+                    @foreach($data['other_update'] as $post)
                     <div class="grid__card">
                         <div class="card__img">
                             <a href="{{ route('site.single_post', $post->slug)}}" class="image-size-70">

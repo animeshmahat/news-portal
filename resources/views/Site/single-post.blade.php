@@ -54,8 +54,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="details__content-main" style="margin-right: 10px;">
-                                        <div class="details__desc">
-                                            <p style="text-align:justify !important;">{!!html_entity_decode($data['post']->content)!!}</p>
+                                        <div class="details__desc" style="text-align:justify !important;">
+                                            <p>{!!html_entity_decode($data['post']->content)!!}</p>
                                         </div>
                                     </div>
                                     <div class="share__widget">

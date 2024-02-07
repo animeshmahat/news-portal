@@ -13,7 +13,7 @@
                         </h2>
 
                         <div class="view__all">
-                            <a href="category/gadgets/index.html" class="view__all-btn">
+                            <a href="" class="view__all-btn">
                                 <span class="custom__icon"></span>
                             </a>
                         </div>
@@ -51,7 +51,7 @@
 
                                 <div class="card__desc line-clamp-3">
                                     <p>
-                                        {!!html_entity_decode($post->content, 0, 26,)!!}
+                                        {!!html_entity_decode($post->content)!!}
                                     </p>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
 
                                 <div class="card__desc line-clamp-3">
                                     <p>
-                                        &nbsp; {!!html_entity_decode($post->content, 0, 26,)!!}
+                                        &nbsp; {!!html_entity_decode($post->content)!!}
                                     </p>
                                 </div>
                             </div>

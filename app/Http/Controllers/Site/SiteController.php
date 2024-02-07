@@ -45,7 +45,10 @@ class SiteController extends BaseController
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->increment('visitor');
         $category_id = $post->category_id;
-        $related_posts = Post::where('category_id', $category_id)->where('status', 1)->where('id', '!=', $post->id)->get();
+        $related_posts = [];
+        if ($post) {
+            $related_posts = Post::where('category_id', $category_id)->where('status', 1)->where('id', '!=', $post->id)->get();
+        }
         $data = [
             'post' => $post,
             'related_posts' => $related_posts,
@@ -59,16 +62,72 @@ class SiteController extends BaseController
         $category = category::where('title', $title)->firstOrFail();
         $category_id = $category->id;
         $featured_post = Post::where('category_id', $category_id)->where('status', 1)->where('featured', 1)->latest()->get()->first();
-        $post = Post::where('category_id', $category_id)->where('status', 1)->where('id', '!=', $featured_post->id)->get();
+        $featured_other = [];
+        if ($featured_post) {
+            $featured_other = Post::get()->sortBy('visitor')->where('category_id', $category_id)->where('status', 1)->where('featured', 1)->where('id', '!=', $featured_post->id);
+        }
+        $post = Post::where('category_id', $category_id)->where('status', 1)->where('featured', 0)->get();
         $latest = Post::where('status', 1)->latest()->get();
         $liked = Post::get()->sortBy('visitor')->where('status', 1);
         $data = [
             'category' => $category,
             'featured_post' => $featured_post,
+            'featured_other' => $featured_other,
             'post' => $post,
             'latest' => $latest,
             'liked' => $liked,
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.category-page'), compact('data'));
+    }
+    public function featured_update(Request $request)
+    {
+        $latest_featured = Post::where('status', 1)->where('featured', 1)->latest()->first();
+        $other_featured = [];
+        if ($latest_featured) {
+            $other_featured = Post::get()->sortBy('visitor')->where('status', 1)->where('featured', 1)->where('id', '!=', $latest_featured->id);
+        }
+        $latest = Post::where('status', 1)->latest()->get();
+        $liked = Post::get()->sortBy('visitor')->where('status', 1);
+        $data = [
+            'latest_featured' => $latest_featured,
+            'other_featured' => $other_featured,
+            'latest' => $latest,
+            'liked' => $liked,
+        ];
+        return view(parent::loadDefaultDataToView($this->view_path . '.featured-updates'), compact('data'));
+    }
+    public function latest_update(Request $request)
+    {
+        $latest_update = Post::where('status', 1)->latest()->first();
+        $other_update = [];
+        if ($latest_update) {
+            $other_update = Post::get()->sortBy('visitor')->where('status', 1)->where('id', '!=', $latest_update->id);
+        }
+        $latest = Post::where('status', 1)->latest()->get();
+        $liked = Post::get()->sortBy('visitor')->where('status', 1);
+        $data = [
+            'latest_update' => $latest_update,
+            'other_update' => $other_update,
+            'latest' => $latest,
+            'liked' => $liked,
+        ];
+        return view(parent::loadDefaultDataToView($this->view_path . '.latest-updates'), compact('data'));
+    }
+    public function most_read(Request $request)
+    {
+        $featured_top_viewed = Post::where('status', 1)->where('featured', 1)->orderBy('visitor')->first();
+        $featured_most_viewed = [];
+        if ($featured_top_viewed) {
+            $featured_most_viewed = Post::get()->sortBy('visitor')->where('status', 1)->where('featured', 1)->where('id', '!=', $featured_top_viewed->id);
+        }
+        $other_most_viewed = Post::get()->sortBy('visitor')->where('status', 1)->where('featured', 0);
+        $post = Post::where('status', 1)->get();
+        $data = [
+            'featured_top_viewed' => $featured_top_viewed,
+            'featured_most_viewed' => $featured_most_viewed,
+            'other_most_viewed' => $other_most_viewed,
+            'post' => $post,
+        ];
+        return view(parent::loadDefaultDataToView($this->view_path . '.most-read'), compact('data'));
     }
 }

@@ -114,4 +114,7 @@ Route::group(['as' => 'site.',                  'namespace' => 'Site'], function
     Route::get('/',                             [App\Http\Controllers\Site\SiteController::class, 'index'])->name('index');
     Route::get('/post/{slug}',                  [App\Http\Controllers\Site\SiteController::class, 'single_post'])->name('single_post');
     Route::get('/category/{title}',             [App\Http\Controllers\Site\SiteController::class, 'category_page'])->name('category_page');
+    Route::get('/latest-updates',               [App\Http\Controllers\Site\SiteController::class, 'latest_update'])->name('latest_update');
+    Route::get('/featured-updates',             [App\Http\Controllers\Site\SiteController::class, 'featured_update'])->name('featured_update');
+    Route::get('/most-read',                    [App\Http\Controllers\Site\SiteController::class, 'most_read'])->name('most_read');
 });

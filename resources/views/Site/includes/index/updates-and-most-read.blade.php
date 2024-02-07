@@ -13,7 +13,7 @@
                             </span>
                         </h2>
                         <div class="view__all">
-                            <a href="category/latest-news/index.html" class="view__all-btn">
+                            <a href="{{route('site.featured_update')}}" class="view__all-btn">
                                 <span class="custom__icon"></span>
                             </a>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="grid__card">
                             <div class="card__img">
                                 <a href="{{route('site.single_post', $data['featured_post']->slug)}}">
-                                    <img src="{{asset('/uploads/post/' . $data['featured_post']->thumbnail)}}" alt="">
+                                    <img src="{{asset('/uploads/post/' . $data['featured_post']->thumbnail)}}" alt="{{$data['featured_post']->title}}">
                                 </a>
                             </div>
                             <div class="card__details">
@@ -83,12 +83,12 @@
                     <h2 class="category__title">
                         <span>
                             <b>
-                                Popular
+                                Most Read
                             </b>
                         </span>
                     </h2>
                     <div class="view__all">
-                        <a href="category/most-read/index.html" class="view__all-btn">
+                        <a href="{{route('site.most_read')}}" class="view__all-btn">
                             <span class="custom__icon"></span>
                         </a>
                     </div>
