@@ -48,10 +48,10 @@
         </div>
         <div class="row">
             @if(isset($data['gallery']))
-            @foreach($data['gallery'] as $gallery)
+            @foreach($data['gallery'] as $row)
             <div class="col-md-6 col-lg-4 item">
-                <a class="lightbox" href="{{route('site.album' , $gallery->name)}}">
-                    <img class="img-fluid image scale-on-hover" src="{{asset('/uploads/gallery/' . $gallery->thumbnail)}}">
+                <a class="lightbox" href="{{route('site.album' , $row->id)}}">
+                    <img class="img-fluid image scale-on-hover" src="{{asset('/uploads/gallery/' . $row->thumbnail)}}" style="width: 400px; height: 240px; object-fit:contain;">
                 </a>
             </div>
             @endforeach

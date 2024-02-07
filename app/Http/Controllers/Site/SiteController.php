@@ -142,20 +142,11 @@ class SiteController extends BaseController
         return view(parent::loadDefaultDataToView($this->view_path . '.gallery'), compact('data'));
     }
 
-    public function album(Request $request, $name)
+    public function album(Request $request, $id)
     {
-        $gallery = Gallery::where('name', $name)->firstOrFail();
-        $gallery_id = $gallery->id;
-
-        if ($gallery_id) {
-            $album = Album::where('gallery_id', $gallery_id)->pluck('images');
+        if ($request->id) {
+            $data['album'] = Album::where('gallery_id', $id)->orderBy('id', 'DESC')->get();
         }
-        // dd($album);
-        $data = [
-            'gallery' => $gallery,
-            'gallery_id' => $gallery_id,
-            'album' => $album,
-        ];
         return view(parent::loadDefaultDataToView($this->view_path . '.album'), compact('data'));
     }
 }

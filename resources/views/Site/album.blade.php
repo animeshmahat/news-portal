@@ -43,15 +43,17 @@
 @section('content')
 <section class="gallery-block grid-gallery">
     <div class="container">
+        @if(isset($data['album']))
+        @foreach($data['album'] as $row)
         <div class="heading">
             <h2>Album</h2>
         </div>
         <div class="row">
-            @if(is_array($data['album']) && count($data['album']) > 0)
-            @foreach($data['album'] as $image)
+            @if(is_array($row->images))
+            @foreach($row->images as $row)
             <div class="col-md-6 col-lg-4 item">
                 <a class="lightbox">
-                    <img class="img-fluid image scale-on-hover" src="{{asset($image)}}">
+                    <img class="img-fluid image scale-on-hover" src="{{asset($row)}}" style="width: 400px; height: 240px; object-fit:contain;">
                 </a>
             </div>
             @endforeach
@@ -59,6 +61,8 @@
             <p>No Images in this Gallery</p>
             @endif
         </div>
+        @endforeach
+        @endif
     </div>
 </section>
 @endsection
