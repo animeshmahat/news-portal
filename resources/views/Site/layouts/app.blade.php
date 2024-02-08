@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Portal</title>
+    <title>@yield('title') | News Portal</title>
     @yield('meta')
     <meta name="description" content=" Nepal's ICT News, Startup and AwarenessPlatform ">
     <meta name="keywords" content="internet in nepal, technology in nepal, tech news nepal, ict in nepal, telecom in nepal, Latest Nepali Tech News, smartphone news nepal, tech nepal, nepal tech news, nepal gadget, tech websites in nepal, laptops, smartphone,">

@@ -1,4 +1,5 @@
 @extends('site.layouts.app')
+@section('title', 'Gallery')
 @section('css')
 <style>
     .gallery-block.grid-gallery {

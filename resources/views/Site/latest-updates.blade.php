@@ -1,5 +1,5 @@
 @extends('site.layouts.app')
-@section('title', 'Featured Updates')
+@section('title', 'Latest Updates')
 @section('css')
 @endsection
 @section('content')
