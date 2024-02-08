@@ -118,5 +118,6 @@ Route::group(['as' => 'site.',                  'namespace' => 'Site'], function
     Route::get('/featured-updates',             [App\Http\Controllers\Site\SiteController::class, 'featured_update'])->name('featured_update');
     Route::get('/most-read',                    [App\Http\Controllers\Site\SiteController::class, 'most_read'])->name('most_read');
     Route::get('/gallery',                      [App\Http\Controllers\Site\SiteController::class, 'gallery'])->name('gallery');
-    Route::get('/album/{id}',                  [App\Http\Controllers\Site\SiteController::class, 'album'])->name('album');
+    Route::get('/album/{id}',                   [App\Http\Controllers\Site\SiteController::class, 'album'])->name('album');
+    Route::get('/about-us',                     [App\Http\Controllers\Site\SiteController::class, 'about_us'])->name('about-us');
 });

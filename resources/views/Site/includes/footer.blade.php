@@ -11,7 +11,7 @@
 
                     <div class="about__content">
                         <p class="about__content-info">
-                            {!!html_entity_decode($all_view['setting']->site_description)!!}
+                            {{$all_view['setting']->site_name}}
                         </p>
 
                         <div class="ict__info">
@@ -116,9 +116,9 @@
                 <div class="footer__content-info">
                     <ul class="ict__impLinks">
                         <li>
-                            <a href="pages/about-us.html">
+                            <a href="{{ route('site.about-us') }}">
                                 <span>
-                                    हाम्रो बारेमा
+                                    About Us
                                 </span>
                             </a>
                         </li>

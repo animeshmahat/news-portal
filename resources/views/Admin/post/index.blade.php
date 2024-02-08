@@ -116,12 +116,12 @@
             $.ajax({
                 url: '/post/updateStatus/' + post_id,
                 type: 'POST',
+                dataType: 'json',
                 data: {
                     "_token": "{{ csrf_token() }}",
                     'status': status,
                     'post_id': post_id
                 },
-                dataType: 'json',
 
                 success: function(response) {
                     console.log('Status Changed')
@@ -141,12 +141,12 @@
             $.ajax({
                 url: '/post/updateFeatured/' + post_id,
                 type: 'POST',
+                dataType: 'json',
                 data: {
                     "_token": "{{ csrf_token() }}",
                     'featured': featured,
                     'post_id': post_id
                 },
-                dataType: 'json',
 
                 success: function(response) {
                     console.log('Featured Changed')

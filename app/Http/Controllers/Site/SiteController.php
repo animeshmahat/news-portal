@@ -50,7 +50,6 @@ class SiteController extends BaseController
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.index'), compact('data'));
     }
-
     public function single_post(Request $request, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
@@ -67,7 +66,6 @@ class SiteController extends BaseController
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.single-post'), compact('data'));
     }
-
     public function category_page(Request $request, $title)
     {
         $category = category::where('title', $title)->firstOrFail();
@@ -153,5 +151,9 @@ class SiteController extends BaseController
             $data['album'] = Album::where('gallery_id', $id)->orderBy('id', 'DESC')->get();
         }
         return view(parent::loadDefaultDataToView($this->view_path . '.album'), compact('data'));
+    }
+    public function about_us()
+    {
+        return view(parent::loadDefaultDataToView($this->view_path . '.about-us'));
     }
 }

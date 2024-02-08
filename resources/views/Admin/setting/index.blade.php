@@ -97,7 +97,7 @@
                 </div>
                 <div class="mt-2 mb-2">
                     <label for="site_description" class="form-label font-weight-bold">Site Description</label>
-                    <textarea class="form-control ms-auto" disabled style="resize: none;">{{strip_tags($site->site_description)}}</textarea>
+                    <textarea class="form-control ms-auto" disabled style="resize: none; text-align:justify;" rows="7">{{strip_tags($site->site_description)}}</textarea>
                 </div>
                 <div class="mt-2 mb-2">
                     <label for="seo" class="form-label font-weight-bold">SEO</label>
