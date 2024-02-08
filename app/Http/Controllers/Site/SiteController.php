@@ -22,16 +22,20 @@ class SiteController extends BaseController
     }
     public function index(Request $request)
     {
-        $post = Post::where('status', 1)->get();
+        $post = Post::where('status', 1)->orderBy('created_at', 'DESC')->get();
         $featured_post = Post::where('status', 1)->where('featured', 1)->latest()->get()->first();
-        $liked_post = Post::get()->sortBy('visitor')->where('status', 1);
+        $liked_post = Post::where('status', 1)->get()->sortBy('visitor');
         $gadget = category::where('title', 'Gadget')->first();
         $telecom = category::where('title', 'Telecom')->first();
+        $featured_video = Video::where('status', 1)->where('featured', 1)->latest()->get()->first();
+        $video = Video::where('status', 1)->where('id', '!=', $featured_video->id)->get();
         if ($gadget) {
             $gadget_posts = Post::where('category_id', $gadget->id)->where('status', 1)->where('featured', 0)->get();
             $gadget_featured = Post::where('category_id', $gadget->id)->where('featured', 1)->get();
-            $telecom_posts = Post::where('category_id', $telecom->id)->where('status', 1)->get();
+        }
+        if ($telecom) {
             $telecom_featured = Post::where('category_id', $telecom->id)->where('status', 1)->where('featured', 1)->latest()->get()->first();
+            $telecom_posts = Post::where('category_id', $telecom->id)->where('status', 1)->where('id', '!=', $telecom_featured->id)->get();
         }
         $data = [
             'post' => $post,
@@ -40,6 +44,9 @@ class SiteController extends BaseController
             'gadget_posts' => $gadget_posts,
             'gadget_featured' => $gadget_featured,
             'telecom_posts' => $telecom_posts,
+            'telecom_featured' => $telecom_featured,
+            'featured_video' => $featured_video,
+            'video' => $video,
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.index'), compact('data'));
     }
@@ -134,14 +141,12 @@ class SiteController extends BaseController
         ];
         return view(parent::loadDefaultDataToView($this->view_path . '.most-read'), compact('data'));
     }
-
     public function gallery(Request $request)
     {
         $data = [];
         $data['gallery'] = Gallery::where('status', '=', 1)->orderBy('id', 'ASC')->get();
         return view(parent::loadDefaultDataToView($this->view_path . '.gallery'), compact('data'));
     }
-
     public function album(Request $request, $id)
     {
         if ($request->id) {

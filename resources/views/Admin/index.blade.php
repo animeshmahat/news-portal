@@ -5,7 +5,8 @@
 @section('content')
 <div class="container-fluid px-4">
     <h2 class="mt-4">News Dashboard</h2>
-    <p id="date"></p>
+    <!-- date  -->
+    <p class="text">{{ date('H:i A D d-M-Y') }}</p>
     @if(session('update_success'))
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
         {{ session('update_success') }}
@@ -48,42 +49,26 @@
                 <h5 class="px-2">Total : {{ $video['row']->count() }}</h5>
             </div>
         </div>
-        <div class="col-3 card p-3">
-            <h3>Popular Posts</h3>
-            <hr>
-            @foreach($data['popular'] as $post)
-            @if($loop->index < 4) <p>{{$post->title}}</p>
-                <p>{{$post->visitor}} views</p>
-                <img src="{{asset('/uploads/post/' . $post->thumbnail)}}" alt="" width="200px">
-                <hr>
-                @endif
-                @endforeach
+        <hr>
+        <h3 class="ml-3 mb-4">Popular Posts</h3>
+        <div class="d-flex flex-row">
+            @if(isset($data['popular']))
+            @foreach($data['popular'] as $row)
+            @if($loop->index < 4) <div class="col-xl-3 col-md-6">
+                <div class="card shadow p-2">
+                    <img src="{{asset('/uploads/post/'. $row->thumbnail)}}" alt="" style="width: 200px; height: 120px; object-fit:contain;">
+                    <hr>
+                    <p style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{$row->title}}</p>
+                    <p><i class="fa fa-eye"></i> {{$row->visitor}} Views</p>
+                </div>
         </div>
-        <div class="col-3 card p-3">
-            <h3>Popular Categories</h3>
-            <hr>
-            @foreach($data['popular'] as $post)
-            @if($loop->index < 4) <p>{{$post->category->title}}</p>
-                <hr>
-                @endif
-                @endforeach
-        </div>
+        @endif
+        @endforeach
+        @endif
     </div>
+</div>
 </div>
 @endsection
 
 @section('js')
-<script>
-    const date = new Date();
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true
-    };
-    document.getElementById("date").innerHTML = date.toLocaleString('en-UK', options);
-</script>
 @endsection

@@ -48,17 +48,6 @@
     </div>
 </div>
 
-<!-- new technology view news -->
-@include('site.includes.index.new-technology-and-view-news')
-
-<div class="bigyapan__banner">
-    <div class="custom-container">
-        <div class="bigyapan">
-            <div class="adalyticsblock" campaign="Z9vyKZqDD7CubSDrnZdXCKWLiKWGDzDfbovz2i1HmPW66ssroY" width="100%"></div>
-        </div>
-    </div>
-</div>
-
 <!-- startup and profile news -->
 @include('site.includes.index.startup-and-profile-news')
 

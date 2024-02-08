@@ -24,7 +24,7 @@ class Album extends Model
         return validator($validate, [
             'gallery_id' => 'required',
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:50000|nullable'
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:100000|nullable'
         ]);
     }
 

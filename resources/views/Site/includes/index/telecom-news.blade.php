@@ -23,11 +23,10 @@
                 <div class="col-lg-4">
                     @if(isset($data['telecom_posts']))
                     @foreach($data['telecom_posts'] as $post)
-                    @if($post->featured == "0")
                     <div class="grid__card">
                         <div class="card__details">
                             <h3 class="card__title">
-                                <a href="{{ route('site.single_post', $post->slug)}}">
+                                <a href="{{ route('site.single_post', $post->slug) }}">
                                     {{$post->title}}
                                 </a>
                             </h3>
@@ -43,7 +42,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
                     @endforeach
                     @endif
                 </div>
@@ -80,6 +78,8 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                    <p></p>
                     @endif
                 </div>
             </div>

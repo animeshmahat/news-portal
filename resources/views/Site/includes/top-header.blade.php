@@ -29,7 +29,7 @@
         </ul>
         <div class="nav__content-menu">
             <div class="current__dateTime">
-                <p id="date"></p>
+                <p>{{ date('h:i A l d-M-Y') }}</p>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
                 <h2 class="category__title">
                     <span>
                         <b>
-                            भिडियो
+                            Video
                         </b>
                     </span>
                 </h2>
@@ -20,38 +20,27 @@
 
         <div class="video__grid">
             <div class="grid__top">
+                @if(isset($data['featured_video']))
                 <div class="grid__card">
                     <div class="card__img">
-                        <a href="https://www.youtube.com/watch?v=YYbtvkIS5c8" class="image-size-70">
-                            <img src="../i2.ytimg.com/vi/YYbtvkIS5c8/hqdefault.jpg" alt="पठनपाठनलाई अब सीपसँग जाेड्नु पर्छ: निमित्त उपकुलपति, त्रिवि">
-                        </a>
-
-                        <a href="https://www.youtube.com/watch?v=YYbtvkIS5c8" class="video__play" data-fancybox data-caption="पठनपाठनलाई अब सीपसँग जाेड्नु पर्छ: निमित्त उपकुलपति, त्रिवि">
-                            <span>
-                                <i class="ph ph-play"></i>
-                            </span>
-                        </a>
+                        <iframe src="https://www.youtube.com/embed/{{$data['featured_video']->video_id}}" frameborder="0" width="700px" height="380px"></iframe>
                     </div>
-
                     <div class="card__details">
                         <h3 class="card__title line-clamp-2">
-                            <a href="https://www.youtube.com/watch?v=YYbtvkIS5c8">
-                                पठनपाठनलाई अब सीपसँग जाेड्नु पर्छ: निमित्त उपकुलपति, त्रिवि
+                            <a href="{{$data['featured_video']->url}}">
+                                {{$data['featured_video']->title}}
                             </a>
                         </h3>
-
                         <div class="post__meta">
                             <p class="meta author">
                                 <a href="#">
-                                    आइसिटी समाचार
+                                    News Portal
                                 </a>
                             </p>
-
                             <p class="meta post__date">
-                                शनिबार, १३ माघ, २०८०
+                                {{$data['featured_video']->created_at->format('d-M-Y')}}
                             </p>
                         </div>
-
                         <div class="card__desc line-clamp-3">
                             <p>
 
@@ -59,37 +48,36 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <marquee behavior="scroll" direction="left">No featured video</marquee>
+                @endif
             </div>
 
             <div class="grid__bottom">
                 <div class="video__slider" id="videoSlider">
+                    @if(isset($data['video']))
+                    @foreach($data['video'] as $row)
                     <div class="grid__card">
                         <div class="card__img">
-                            <a href="https://www.youtube.com/watch?v=dFxFHsbj0Hw" class="image-size-70">
-                                <img src="../i1.ytimg.com/vi/dFxFHsbj0Hw/hqdefault.jpg" alt="">
-                            </a>
-
-                            <a href="https://www.youtube.com/watch?v=dFxFHsbj0Hw" class="video__play" data-fancybox data-caption="सूचना प्रविधिको विकासबाट भाग्ने हाेइन्, यसकाे उचित प्रयाेग गर्नुपर्छ: सञ्चारमन्त्री">
-                                <span>
-                                    <i class="ph ph-play"></i>
-                                </span>
-                            </a>
+                            <iframe src="https://www.youtube.com/embed/{{$row->video_id}}" frameborder="0"></iframe>
                         </div>
 
                         <div class="card__details">
                             <h3 class="card__title line-clamp-2">
                                 <a href="https://www.youtube.com/watch?v=dFxFHsbj0Hw">
-                                    सूचना प्रविधिको विकासबाट भाग्ने हाेइन्, यसकाे उचित प्रयाेग गर्नुपर्छ: सञ्चारमन्त्री
+                                    {{$row->title}}
                                 </a>
                             </h3>
 
                             <div class="post__meta">
                                 <p class="meta post__date">
-                                    शनिबार, १३ माघ, २०८०
+                                    {{$row->created_at->format('d-M-Y')}}
                                 </p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endif
                 </div>
                 <div class="slider__controls">
                     <a href="javascript:void(0)" class="arrow_vertical arrow_vertical-prev2 slick-arrow">

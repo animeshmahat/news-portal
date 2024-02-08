@@ -79,19 +79,6 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
     <script>
-        const date = new Date();
-        const options = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-        };
-        document.getElementById("date").innerHTML = date.toLocaleString('en-UK', options);
-    </script>
-    <script>
         $(document).ready(function() {
             $("#breakingSlider").slick({
                 infinite: true,

@@ -46,7 +46,7 @@
         @if(isset($data['album']))
         @foreach($data['album'] as $row)
         <div class="heading">
-            <h2>Album</h2>
+            <h2>ALBUM | {{ $row->gallery ? $row->gallery->name : 'Not found' }}</h2>
         </div>
         <div class="row">
             @if(is_array($row->images))
