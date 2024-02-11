@@ -35,7 +35,7 @@ class Post extends Model
             'status' => 'nullable | boolean',
             'featured' => 'nullable | boolean',
             'url' => 'string | required',
-            'thumbnail' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4048'
+            'thumbnail' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10000'
         ]);
     }
     public function getUser()

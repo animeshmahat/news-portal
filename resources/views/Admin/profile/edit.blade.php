@@ -51,7 +51,9 @@
                 </div>
                 <div class="form-group mt-3 mb-3">
                     <label for="image" class="form-label"><strong>Image</strong></label>
-                    <input type="file" name="image" id="image" class="form-control" accept="image/png, image/gif, image/jpeg">
+                    <input type="file" name="image" id="image" onchange="loadFile(event)" class="form-control" accept="image/png, image/gif, image/jpeg">
+                    <strong>Preview</strong><br>
+                    <img id="output" style="max-width: 200px; max-height: 120px;" />
                     @error('image')
                     <div class="alert alert-danger" role="alert">{{ $message }}</div>
                     @enderror
@@ -115,4 +117,13 @@
 @endsection
 
 @section('js')
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src);
+        }
+    };
+</script>
 @endsection

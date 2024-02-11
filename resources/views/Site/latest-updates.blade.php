@@ -22,7 +22,7 @@
             <div class="grid__card">
                 <div class="card__img">
                     <a href="{{route('site.single_post' , $data['latest_update']->slug)}}" class="image-size-70">
-                        <img src="{{asset('/uploads/post/' . $data['latest_update']->thumbnail)}}" alt="इजरायल–हमास युद्धमा यसरी हुँदैछ क्रिप्टोकरेन्सीको प्रयोग">
+                        <img src="{{asset('/uploads/post/' . $data['latest_update']->thumbnail)}}">
                     </a>
                 </div>
                 <div class="card__details">

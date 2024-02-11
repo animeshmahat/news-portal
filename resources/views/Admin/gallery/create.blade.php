@@ -31,7 +31,10 @@
                     <!-- thumbnail -->
                     <div class="mb-4">
                         <label for="thumbnail" class="form-label"><strong>Thumbnail</strong></label>
-                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" placeholder="Upload thumbnail" accept="image/png, image/gif, image/jpeg">
+                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" onchange="loadFile(event)" placeholder="Upload thumbnail" accept="image/png, image/gif, image/jpeg">
+                        <br>
+                        <strong>Preview</strong><br>
+                        <img id="output" style="max-width: 300px; max-width: 180px;" />
                         @error('images')
                         <div class="validate m-1">{{ $message }}</div>
                         @enderror
@@ -82,4 +85,13 @@
 @endsection
 
 @section('js')
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src)
+        }
+    };
+</script>
 @endsection

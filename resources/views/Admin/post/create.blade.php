@@ -65,10 +65,12 @@
                     <!-- thumbnail -->
                     <div class="mb-4">
                         <label for="thumbnail" class="form-label"><strong>Thumbnail</strong></label>
-                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" placeholder="Enter Post Thumbnail" accept="image/png, image/gif, image/jpeg">
+                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" onchange="loadFile(event)" placeholder="Enter Post Thumbnail" accept="image/png, image/gif, image/jpeg">
                         @error('thumbnail')
                         <div class="validate m-1">{{$message}}</div>
                         @enderror
+                        <strong>Preview</strong><br>
+                        <img id="output" style="max-width: 300px; max-height: 180px;" />
                     </div>
 
                     <!-- URL -->
@@ -82,21 +84,21 @@
 
                     <!-- status -->
                     <div class="d-flex flex-row">
-                        <div class="mb-4">
+                        <div class="mb-4 mr-4">
                             <label for="status"><strong>Status </strong> </label>
                         </div>
-                        <div class="form-check mb-4">
-                            <input type="checkbox" id="status" name="status" value="1" {{ old('status') ? 'checked' : '' }}>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" name="status" id="status" class="form-check-input" role="switch" value="1" {{ old('status') ? 'checked' : '' }}>
                         </div>
                     </div>
 
                     <!-- featured -->
                     <div class="d-flex flex-row">
-                        <div class="mb-4">
+                        <div class="mb-4 mr-4">
                             <label for="featured"><strong>Featured </strong></label>
                         </div>
-                        <div class="form-check mb-4">
-                            <input type="checkbox" id="featured" name="featured" value="1" {{ old('featured') ? 'checked' : '' }}>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" name="featured" id="featured" class="form-check-input" role="switch" value="1" {{ old('featured') ? 'checked' : '' }}>
                         </div>
                     </div>
 
@@ -115,6 +117,15 @@
 @endsection
 
 @section('js')
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src)
+        }
+    };
+</script>
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('description', options);
@@ -126,5 +137,4 @@
         filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
     };
 </script>
-
 @endsection
