@@ -65,14 +65,14 @@
                         @foreach($data['gadget_posts'] as $post)
                         <div class="grid__card">
                             <div class="card__img">
-                                <a href="news/sibesu-s-distribution-to-200-families-affected-by/index.html" class="image-size-60">
+                                <a href="{{ route('site.single_post', $post->slug)}}" class="image-size-60">
                                     <img src="{{asset('/uploads/post/' . $post->thumbnail)}}">
                                 </a>
                             </div>
 
                             <div class="card__details">
                                 <h3 class="card__title line-clamp-4">
-                                    <a href="news/sibesu-s-distribution-to-200-families-affected-by/index.html">
+                                    <a href="{{ route('site.single_post', $post->slug)}}">
                                         {{$post->title}}
                                     </a>
                                 </h3>
