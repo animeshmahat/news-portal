@@ -58,7 +58,7 @@
                 <h5 class="px-2">Total : {{ $video['row']->count() }}</h5>
             </div>
         </div>
-        <hr>
+        <!-- <hr>
         <h3 class="ml-3 mb-4">Popular Posts</h3>
         <div class="d-flex flex-row">
             @if(isset($data['popular']))
@@ -74,8 +74,8 @@
         @endif
         @endforeach
         @endif
+    </div> -->
     </div>
-</div>
 </div>
 @endsection
 

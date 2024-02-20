@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('title', 'Create Album')
 @section('css')
+<link type="text/css" rel="stylesheet" href="http://example.com/image-uploader.min.css">
 @endsection
 @section('content')
 <div class="container p-4">
@@ -28,12 +29,20 @@
                 <div class="alert alert-danger m-1">{{$message}}</div>
                 @enderror
 
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label for="images" class="form-label"><strong>Images</strong></label>
-                    <input type="file" class="form-control" id="images" name="images[]" multiple placeholder="Upload Images" accept="image/png, image/gif, image/jpeg">
+                    <input type="file" class="form-control" id="images" name="images[]" onchange="loadFile(event)" multiple placeholder="Upload Images" accept="image/png, image/gif, image/jpeg">
+                    <br>
+                    <strong>Preview</strong><br>
+                    <div id="output"></div>
                     @error('images')
                     <div class="validate m-1">{{ $message }}</div>
                     @enderror
+                </div> -->
+
+                <div class="input-field">
+                    <label class="active">Photos</label>
+                    <div class="input-images" style="padding-top: .5rem;" name="images[]"></div>
                 </div>
                 <hr>
                 @if ($errors->any())
@@ -57,5 +66,29 @@
 </div>
 @endsection
 @section('js')
+<script type="text/javascript" src="http://example.com/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://example.com/image-uploader.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.input-images').imageUploader();
+    });
+</script>
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.innerHTML = '';
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var img = document.createElement('img');
+            img.src = URL.createObjectURL(files[i]);
+            img.style.maxWidth = '300px';
+            img.style.maxHeight = '180px';
+            output.appendChild(img);
+        }
+        output.onload = function() {
+            URL.revokeObjectURL(output.src);
+        }
+    };
+</script>
 @endsection
