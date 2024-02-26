@@ -71,7 +71,7 @@ class UserProfileController extends BaseController
     public function passwordChange(Request $request)
     {
         $request->validate([
-            'current_password'      => 'required',
+            'current_password'      => 'bail|required',
             'password'              => 'required|max:50|min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'max:50|min:5'
         ]);
