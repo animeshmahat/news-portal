@@ -105,7 +105,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-5 d-flex flex-column">
+        <div class="col-sm-5 d-flex flex-column justify-content-center mb-auto">
             <!-- second card -->
             <div class="card m-2">
                 <div class="d-flex flex-row justify-content-between pt-2 px-2">
